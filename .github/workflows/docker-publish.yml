@@ -11,6 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set tag
+      id: vars
+      run: echo "tag=$(cat bitcoin/Dockerfile | grep 'ENV CRYPTO_VERSION' | cut -d '=' -f2)" >> $GITHUB_OUTPUT
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
@@ -26,4 +30,4 @@ jobs:
       with:
         context: bitcoin/
         push: true
-        tags: ${{ secrets.DOCKERHUB_USER }}/base-nodes:bitcoin-latest
+        tags: ${{ secrets.DOCKERHUB_USER }}/base-nodes:${{ steps.vars.outputs.tag }} , ${{ secrets.DOCKERHUB_USER }}/base-nodes:bitcoin-latest
