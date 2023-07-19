@@ -1,8 +1,10 @@
-name: CI
+name: CI - Litecoin
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - litecoin/**
 
 jobs:
   build:
@@ -13,7 +15,7 @@ jobs:
 
     - name: Set tag
       id: vars
-      run: echo "tag=$(cat bitcoin/Dockerfile | grep 'ENV CRYPTO_VERSION' | cut -d '=' -f2)" >> $GITHUB_OUTPUT
+      run: echo "tag=$(cat litecoin/Dockerfile | grep 'ENV CRYPTO_VERSION' | cut -d '=' -f2)" >> $GITHUB_OUTPUT
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -24,10 +26,10 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: bitcoin build and push
+    - name: litecoin build and push
       id: docker_build
       uses: docker/build-push-action@v2
       with:
-        context: bitcoin/
+        context: litecoin/
         push: true
-        tags: ${{ secrets.DOCKERHUB_USER }}/base-nodes:${{ steps.vars.outputs.tag }} , ${{ secrets.DOCKERHUB_USER }}/base-nodes:bitcoin-latest
+        tags: ${{ secrets.DOCKERHUB_USER }}/base-nodes:litecoin-${{ steps.vars.outputs.tag }} , ${{ secrets.DOCKERHUB_USER }}/base-nodes:bitcoin-latest
