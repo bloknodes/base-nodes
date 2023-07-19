@@ -32,4 +32,4 @@ jobs:
       with:
         context: litecoin/
         push: true
-        tags: ${{ secrets.DOCKERHUB_USER }}/base-nodes:litecoin-${{ steps.vars.outputs.tag }} , ${{ secrets.DOCKERHUB_USER }}/base-nodes:bitcoin-latest
+        tags: ${{ secrets.DOCKERHUB_USER }}/base-nodes:litecoin-${{ steps.vars.outputs.tag }} , ${{ secrets.DOCKERHUB_USER }}/base-nodes:litecoin-latest
