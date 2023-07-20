@@ -1,0 +1,16 @@
+FROM busybox as builder
+
+WORKDIR /src
+
+ENV CRYPTO_VERSION=1.14.6
+ENV CRYPTO_ARCH=x86_64
+
+RUN wget https://github.com/dogecoin/dogecoin/releases/download/v${CRYPTO_VERSION}/dogecoin-${CRYPTO_VERSION}-${CRYPTO_ARCH}-linux-gnu.tar.gz && \
+    tar -xf dogecoin-${CRYPTO_VERSION}-${CRYPTO_ARCH}-linux-gnu.tar.gz && \
+    mv dogecoin-${CRYPTO_VERSION}/bin/dogecoind /src/dogecoind && \
+    echo ${CRYPTO_VERSION} > /src/dogecoin.version
+
+FROM busybox
+
+COPY --from=builder /src/dogecoind /usr/local/dogecoin/bin/dogecoind
+COPY --from=builder /src/dogecoin.version /usr/local/dogecoin/docs/dogecoin.version
