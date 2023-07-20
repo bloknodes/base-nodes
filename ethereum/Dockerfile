@@ -1,4 +1,4 @@
-FROM busybox as builder
+FROM alpine as builder
 
 WORKDIR /src
 
@@ -6,6 +6,8 @@ ENV CRYPTO_NAME=ethereum
 ENV CRYPTO_VERSION=1.12.0
 ENV CRYPTO_ARCH=amd64
 ENV CRYPTO_COMMIT=e501b3b0
+
+RUN apk --no-cache add openssl
 
 RUN wget https://gethstore.blob.core.windows.net/builds/geth-linux-${CRYPTO_ARCH}-${CRYPTO_VERSION}-${CRYPTO_COMMIT}.tar.gz && \
     tar -xvf geth-linux-${CRYPTO_ARCH}-${CRYPTO_VERSION}-${CRYPTO_COMMIT}.tar.gz && \
