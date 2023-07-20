@@ -9,7 +9,7 @@ ENV CRYPTO_COMMIT=e501b3b0
 
 RUN wget https://gethstore.blob.core.windows.net/builds/geth-linux-${CRYPTO_ARCH}-${CRYPTO_VERSION}-${CRYPTO_COMMIT}.tar.gz && \
     tar -xvf geth-linux-${CRYPTO_ARCH}-${CRYPTO_VERSION}-${CRYPTO_COMMIT}.tar.gz && \
-    mv geth-linux-${CRYPTO_ARCH}-${CRYPTO_VERSION}-${${CRYPTO_COMMIT}}/geth /src/geth && \
+    mv geth-linux-${CRYPTO_ARCH}-${CRYPTO_VERSION}-${CRYPTO_COMMIT}/geth /src/geth && \
     echo ${CRYPTO_VERSION} > /src/geth.version
 
 FROM busybox
