@@ -10,7 +10,6 @@ RUN wget https://download.litecoin.org/litecoin-${CRYPTO_VERSION}/linux/litecoin
     mv litecoin-${CRYPTO_VERSION}/bin/litecoind /src/litecoind && \
     echo ${CRYPTO_VERSION} > /src/litecoin.version
 
-FROM busybox
-
+FROM debian:bookworm-slim
 COPY --from=builder /src/litecoind /usr/local/litecoin/bin/litecoind
 COPY --from=builder /src/litecoin.version /usr/local/litecoin/docs/litecoin.version
