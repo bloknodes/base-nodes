@@ -12,5 +12,5 @@ RUN wget https://github.com/dogecoin/dogecoin/releases/download/v${CRYPTO_VERSIO
 
 FROM busybox
 
-COPY --from=builder /src/dogecoind /usr/local/dogecoin/bin/dogecoind
-COPY --from=builder /src/dogecoin.version /usr/local/dogecoin/docs/dogecoin.version
+COPY --from=builder /src/dogecoind /usr/bin/dogecoind
+COPY --from=builder /src/dogecoin.version /opt/dogecoin.version

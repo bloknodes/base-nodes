@@ -16,6 +16,6 @@ RUN wget https://gethstore.blob.core.windows.net/builds/geth-linux-${CRYPTO_ARCH
 
 FROM busybox
 
-COPY --from=builder /src/geth /usr/local/geth/bin/geth
-COPY --from=builder /src/geth.version /usr/local/geth/docs/geth.version
-RUN chmod +x /usr/local/geth/bin/geth
+COPY --from=builder /src/geth /usr/bin/geth
+COPY --from=builder /src/geth.version /opt/geth.version
+RUN chmod +x /usr/bin/geth

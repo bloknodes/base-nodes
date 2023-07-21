@@ -1,6 +1,10 @@
 # base-nodes
 Blockchain Nodes Base Container Images Repository
 
+## About
+
+The base container images contains the binary to run the blockchain node of choice.
+
 ## Versions
 
 **Bitcoin**:
@@ -23,3 +27,6 @@ Blockchain Nodes Base Container Images Repository
 - Version: `1.12.0`
 - Docker Image: `bloknodes/base-nodes:ethereum-1.12.0` (geth)
 
+## Binary Paths
+
+All nodes has their binary placed in `/usr/bin/`, you can look at the respective dockerfiles.
