@@ -18,4 +18,4 @@ FROM busybox
 
 COPY --from=builder /src/geth /usr/bin/geth
 COPY --from=builder /src/geth.version /opt/geth.version
-RUN chmod +x /usr/local/geth/bin/geth
+RUN chmod +x /usr/bin/geth
