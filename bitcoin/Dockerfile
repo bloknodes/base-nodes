@@ -11,6 +11,6 @@ RUN wget https://bitcoincore.org/bin/bitcoin-core-${CRYPTO_VERSION}/bitcoin-${CR
     echo $CRYPTO_VERSION > /src/bitcoin.version
 
 FROM debian:bookworm-slim
-COPY --from=builder /src/bitcoind /usr/local/bitcoin/bin/bitcoind
-COPY --from=builder /src/bitcoin.version /usr/local/bitcoin/docs/bitcoin.version
+COPY --from=builder /src/bitcoind /usr/bin/bitcoind
+COPY --from=builder /src/bitcoin.version /opt/bitcoin.version
 

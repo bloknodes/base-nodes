@@ -11,5 +11,5 @@ RUN wget https://download.litecoin.org/litecoin-${CRYPTO_VERSION}/linux/litecoin
     echo ${CRYPTO_VERSION} > /src/litecoin.version
 
 FROM debian:bookworm-slim
-COPY --from=builder /src/litecoind /usr/local/litecoin/bin/litecoind
-COPY --from=builder /src/litecoin.version /usr/local/litecoin/docs/litecoin.version
+COPY --from=builder /src/litecoind /usr/bin/litecoind
+COPY --from=builder /src/litecoin.version /opt/litecoin.version
