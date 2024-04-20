@@ -9,6 +9,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [aarch64, x86_64]
+        include:
+          - arch: aarch64
+            docker_arch: linux/arm64
+          - arch: x86_64
+            docker_arch: linux/amd64
 
     steps:
     - uses: actions/checkout@v2
@@ -35,14 +43,11 @@ jobs:
       with:
         context: dogecoin/
         push: true
-        platforms: linux/amd64,linux/arm64
+        platforms: ${{ matrix.docker_arch }}
         build-args: |
           CRYPTO_ARCH=${{ matrix.arch }}
         tags: |
           ${{ secrets.DOCKERHUB_USER }}/base-nodes:dogecoin-${{ steps.vars.outputs.tag }}
           ${{ secrets.DOCKERHUB_USER }}/base-nodes:dogecoin-latest
-      strategy:
-        matrix:
-          arch: [aarch64, x86_64]
 
 
