@@ -50,4 +50,3 @@ jobs:
           ${{ secrets.DOCKERHUB_USER }}/base-nodes:dogecoin-${{ steps.vars.outputs.tag }}
           ${{ secrets.DOCKERHUB_USER }}/base-nodes:dogecoin-latest
 
-
