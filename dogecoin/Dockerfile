@@ -2,8 +2,9 @@ FROM busybox as builder
 
 WORKDIR /src
 
-ENV CRYPTO_VERSION=1.14.6
-ENV CRYPTO_ARCH=x86_64
+ARG CRYPTO_ARCH=x86_64
+ENV CRYPTO_VERSION=1.14.7
+ENV CRYPTO_ARCH=$CRYPTO_ARCH
 
 RUN wget https://github.com/dogecoin/dogecoin/releases/download/v${CRYPTO_VERSION}/dogecoin-${CRYPTO_VERSION}-${CRYPTO_ARCH}-linux-gnu.tar.gz && \
     tar -xf dogecoin-${CRYPTO_VERSION}-${CRYPTO_ARCH}-linux-gnu.tar.gz && \
