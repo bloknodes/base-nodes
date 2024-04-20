@@ -15,3 +15,4 @@ FROM busybox
 
 COPY --from=builder /src/dogecoind /usr/bin/dogecoind
 COPY --from=builder /src/dogecoin.version /opt/dogecoin.version
+
